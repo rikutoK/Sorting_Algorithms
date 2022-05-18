@@ -1,3 +1,4 @@
+package main;
 import javax.swing.JFrame;
 
 public class Main extends JFrame{
@@ -15,7 +16,7 @@ public class Main extends JFrame{
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
-        new CustomPanel(data);
+        new Controller(data);
     }
 
     public static void main(String[] args) {

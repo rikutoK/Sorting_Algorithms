@@ -1,9 +1,15 @@
+package main;
 import java.awt.FlowLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.*;
 
-public class CustomPanel extends JFrame {
+import algorithms.BubbleSort;
+import algorithms.MonkeySort;
+import algorithms.Sort;
+
+public class Controller extends JFrame {
     public final static int SCREEN_WIDTH = 200;
     public final static int SCREEN_LENGTH = 300;
 
@@ -11,6 +17,9 @@ public class CustomPanel extends JFrame {
 
     private JButton shuffle;
     private JButton sort;
+    private JButton stop;
+
+    private Sort algorithm = null;
 
     private JComboBox cb;
     private final String[] algorithms = {
@@ -20,7 +29,7 @@ public class CustomPanel extends JFrame {
 
     private Thread thread = new Thread();
     
-    public CustomPanel(SortArray data) {
+    public Controller(SortArray data) {
         this.setLayout(new FlowLayout(FlowLayout.CENTER));
         initComponents();
 
@@ -47,6 +56,10 @@ public class CustomPanel extends JFrame {
         sort = new JButton("Sort");
         sort.addActionListener(e -> sort());
         this.add(sort);
+
+        stop = new JButton("Stop");
+        stop.addActionListener(e -> stop());
+        this.add(stop);
     }
 
     private void shuffle() {
@@ -70,11 +83,18 @@ public class CustomPanel extends JFrame {
     private void runAlgorithms() {
         switch((String) cb.getSelectedItem()) {
             case "Bubble Sort":
-                new BubbleSort(data);
+                algorithm = new BubbleSort(data);
+                algorithm.sort();
                 break;
             case "Monkey Sort":
-                new MonkeySort(data);
+                algorithm = new MonkeySort(data);
+                algorithm.sort();
                 break;
         }
     }
+
+    private void stop() {
+        algorithm.setStop();
+    }
+    
 }

@@ -1,5 +1,4 @@
 package algorithms;
-
 import main.SortArray;
 
 public class BubbleSort extends Sort {
@@ -27,5 +26,6 @@ public class BubbleSort extends Sort {
             }
             max--;
         }
+        
     }
 }

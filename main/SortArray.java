@@ -1,3 +1,4 @@
+package main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -116,7 +117,7 @@ public class SortArray extends JPanel {
         }
     }
 
-    private void makeAll(Color c) {
+    public void makeAll(Color c) {
         for(int i = 0; i < dataColor.length; i++) {
             dataColor[i] = c;
         }
