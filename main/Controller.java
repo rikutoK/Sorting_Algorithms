@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import algorithms.BubbleSort;
 import algorithms.MonkeySort;
+import algorithms.SelectionSort;
 import algorithms.Sort;
 
 public class Controller extends JFrame {
@@ -24,7 +25,8 @@ public class Controller extends JFrame {
     private JComboBox cb;
     private final String[] algorithms = {
         "Bubble Sort",
-        "Monkey Sort"
+        "Monkey Sort",
+        "Selection Sort"
     };
 
     private Thread thread = new Thread();
@@ -88,6 +90,10 @@ public class Controller extends JFrame {
                 break;
             case "Monkey Sort":
                 algorithm = new MonkeySort(data);
+                algorithm.sort();
+                break;
+            case "Selection Sort":
+                algorithm = new SelectionSort(data);
                 algorithm.sort();
                 break;
         }
