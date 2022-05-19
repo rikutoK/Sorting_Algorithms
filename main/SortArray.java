@@ -57,6 +57,10 @@ public class SortArray extends JPanel {
         data[index2] = temp;
     }
 
+    public void set(int index, int value) {
+        data[index] = value;
+    }
+
     public boolean isSorted() {
         for(int i = 0; i < data.length - 1; i++) {
             if(get(i) > get(i+1)) {
