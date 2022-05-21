@@ -1,11 +1,11 @@
 package main;
 import java.awt.FlowLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.*;
 
 import algorithms.BubbleSort;
+import algorithms.InsertionSort;
 import algorithms.MonkeySort;
 import algorithms.SelectionSort;
 import algorithms.Sort;
@@ -25,8 +25,12 @@ public class Controller extends JFrame {
     private JComboBox cb;
     private final String[] algorithms = {
         "Bubble Sort",
+        // "Shaker Sort",
         "Monkey Sort",
-        "Selection Sort"
+        "Selection Sort",
+        "Insertion Sort",
+        // "Merge Sort",
+        // "Quick Sort"
     };
 
     private Thread thread = new Thread();
@@ -86,20 +90,28 @@ public class Controller extends JFrame {
         switch((String) cb.getSelectedItem()) {
             case "Bubble Sort":
                 algorithm = new BubbleSort(data);
-                algorithm.sort();
                 break;
             case "Monkey Sort":
                 algorithm = new MonkeySort(data);
-                algorithm.sort();
                 break;
             case "Selection Sort":
                 algorithm = new SelectionSort(data);
-                algorithm.sort();
                 break;
+            case "Insertion Sort":
+                algorithm = new InsertionSort(data);
+                break;
+            default:
+                return;
         }
+
+        algorithm.sort();
     }
 
     private void stop() {
+        if(algorithm == null) {
+            return;
+        }
+
         algorithm.setStop();
     }
     

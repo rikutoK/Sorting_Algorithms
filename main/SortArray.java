@@ -14,7 +14,7 @@ public class SortArray extends JPanel {
     private static int[] data;
     private static Color[] dataColor;
 
-    private final static int TIME = 2; //milli sec
+    private final static int TIME = 1; //delay time milli sec
 
     public SortArray() {
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_LENGTH));

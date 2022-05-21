@@ -13,18 +13,26 @@ public class BubbleSort extends Sort {
     public void sort() {
         int max = data.length() - 1;
 
-        while(!data.isSorted()) {
+        if(data.isSorted()) {
+            return;
+        }
 
-            if(stop()) {
-                return;
-            }
+        for(int i = 0; i < data.length(); i++) {
+            for(int j = 0; j < max; j++) {
 
-            for(int i = 0; i < max; i++) {
-                if(data.get(i) > data.get(i+1)) {
-                    data.swap(i, i+1);
+                if(stop()) {
+                    return;
+                }
+
+                if(data.get(j) > data.get(j+1)) {
+                    data.swap(j, j+1);
                 }
             }
             max--;
+        }
+
+        if(!data.isSorted()) {
+            sort();
         }
         
     }
