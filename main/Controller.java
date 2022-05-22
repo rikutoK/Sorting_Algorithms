@@ -26,7 +26,7 @@ public class Controller extends JFrame {
         "Selection Sort",
         "Insertion Sort",
         // "Merge Sort",
-        // "Quick Sort"
+        "Quick Sort"
     };
 
     private Thread thread = new Thread();
@@ -98,6 +98,9 @@ public class Controller extends JFrame {
                 break;
             case "Cocktail Sort":
                 algorithm = new CocktailSort(data);
+                break;
+            case "Quick Sort":
+                algorithm = new QuickSort(data);
                 break;
             default:
                 return;
