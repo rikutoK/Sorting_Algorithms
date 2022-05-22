@@ -4,11 +4,7 @@ import java.awt.Dimension;
 
 import javax.swing.*;
 
-import algorithms.BubbleSort;
-import algorithms.InsertionSort;
-import algorithms.MonkeySort;
-import algorithms.SelectionSort;
-import algorithms.Sort;
+import algorithms.*;
 
 public class Controller extends JFrame {
     public final static int SCREEN_WIDTH = 200;
@@ -25,7 +21,7 @@ public class Controller extends JFrame {
     private JComboBox cb;
     private final String[] algorithms = {
         "Bubble Sort",
-        // "Shaker Sort",
+        "Cocktail Sort",
         "Monkey Sort",
         "Selection Sort",
         "Insertion Sort",
@@ -99,6 +95,9 @@ public class Controller extends JFrame {
                 break;
             case "Insertion Sort":
                 algorithm = new InsertionSort(data);
+                break;
+            case "Cocktail Sort":
+                algorithm = new CocktailSort(data);
                 break;
             default:
                 return;
