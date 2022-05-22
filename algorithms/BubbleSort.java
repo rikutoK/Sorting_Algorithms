@@ -11,13 +11,14 @@ public class BubbleSort extends Sort {
 
     @Override
     public void sort() {
+        boolean swapped = true;
+
         int max = data.length() - 1;
 
-        if(data.isSorted()) {
-            return;
-        }
+        while(swapped) {
 
-        for(int i = 0; i < data.length(); i++) {
+            swapped = false;
+
             for(int j = 0; j < max; j++) {
 
                 if(stop()) {
@@ -26,8 +27,10 @@ public class BubbleSort extends Sort {
 
                 if(data.get(j) > data.get(j+1)) {
                     data.swap(j, j+1);
+                    swapped = true;
                 }
             }
+            
             max--;
         }
 
