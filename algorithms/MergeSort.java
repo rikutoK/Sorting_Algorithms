@@ -27,7 +27,27 @@ public class MergeSort extends Sort {
         for(int i = 0; i < sizeR; i++) {
             rightArr[i] = data.get(mid + i + 1);
         }
-
+        while(in < sizeL && jn < sizeR) {
+            if(leftArr[in] <= rightArr[jn]) {
+                data.swap(k, left+in);
+                in++;
+            }
+            else {
+                data.swap(k, mid+jn+1);
+                jn++;
+            }
+            k++;
+        }
+        while (in < sizeL) {
+            data.swap(k, left+in);;
+            in++;
+            k++;
+        }
+        while (jn < sizeR) {
+            data.swap(k, mid+jn+1);;
+            jn++;
+            k++;
+        }
 
     }
     
@@ -44,8 +64,13 @@ public class MergeSort extends Sort {
 
     @Override
     public void sort() {
-        // TODO Auto-generated method stub
-        
+        if(data.isSorted()) {
+            return;
+        }
+        arrange(data, 0, data.length()-1);
+        if(!data.isSorted()) {
+            sort();
+        }
     }
 
 }

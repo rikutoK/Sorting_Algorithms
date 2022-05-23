@@ -25,7 +25,7 @@ public class Controller extends JFrame {
         "Monkey Sort",
         "Selection Sort",
         "Insertion Sort",
-        // "Merge Sort",
+        "Merge Sort",
         "Quick Sort"
     };
 
@@ -104,6 +104,9 @@ public class Controller extends JFrame {
                 break;
             case "Quick Sort":
                 algorithm = new QuickSort(data);
+                break;
+            case "Merge Sort":
+                algorithm = new MergeSort(data);
                 break;
             default:
                 return;
