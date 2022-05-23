@@ -69,7 +69,10 @@ public class Controller extends JFrame {
             return;
         }
 
-        thread = new Thread(() -> data.shuffle());
+        thread = new Thread(() -> {
+            data.resetCount();
+            data.shuffle();
+        });
         thread.start();
     }
 
@@ -106,6 +109,7 @@ public class Controller extends JFrame {
                 return;
         }
 
+        data.resetCount();
         algorithm.sort();
     }
 

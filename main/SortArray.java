@@ -1,10 +1,11 @@
 package main;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class SortArray extends JPanel {
     public final static int SCREEN_WIDTH = 1000;
@@ -17,17 +18,29 @@ public class SortArray extends JPanel {
 
     private final static int TIME = 1; //delay time milli sec
 
-    private JTextField txtRead_Count;
-    private int count = 0;
+    private JLabel txtRead_Count;
+    private int read_count = 0;
+
+    private JLabel txtSwap_Count;
+    private int swap_count = 0;
 
     public SortArray() {
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_LENGTH));
         this.setBackground(Color.BLACK);
 
-        txtRead_Count = new JTextField("Number of Reads: "+count);
-        txtRead_Count.setEditable(false);
+        this.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        txtRead_Count = new JLabel("Number of Reads: "+read_count);
+        txtRead_Count.setBackground(Color.BLACK);
+        txtRead_Count.setForeground(Color.WHITE);
         txtRead_Count.setPreferredSize(new Dimension(200, 40));
         this.add(txtRead_Count);
+
+        txtSwap_Count = new JLabel("Number of Swaps: "+swap_count);
+        txtSwap_Count.setBackground(Color.BLACK);
+        txtSwap_Count.setForeground(Color.WHITE);
+        txtSwap_Count.setPreferredSize(new Dimension(200, 40));
+        this.add(txtSwap_Count);
 
         data = new int[SCREEN_WIDTH/GRID_SIZE];
         dataColor = new Color[data.length];
@@ -64,6 +77,8 @@ public class SortArray extends JPanel {
         int temp = get(index1);
         data[index1] = get(index2);
         data[index2] = temp;
+
+        incrementSwap();
     }
 
     public void set(int index, int value) {
@@ -141,9 +156,20 @@ public class SortArray extends JPanel {
     }
 
     private void incrementCount() {
-        count++;
-//        new Thread(() -> txtRead_Count.setText("Number of Reads: "+count)).start();
-        txtRead_Count.setText("Number of Reads: "+count);
+        read_count++;
+        txtRead_Count.setText("Number of Reads: "+read_count);
+    }
 
+    private void incrementSwap() {
+        swap_count++;
+        txtSwap_Count.setText("Number of Swaps: "+swap_count);
+    }
+
+    public void resetCount() {
+        read_count = 0;
+        txtRead_Count.setText("Number of Reads: "+read_count);
+
+        swap_count = 0;
+        txtSwap_Count.setText("Number of Swaps: "+swap_count);
     }
 }
