@@ -25,6 +25,8 @@ public class SortArray extends JPanel {
         this.setBackground(Color.BLACK);
 
         txtRead_Count = new JTextField("Number of Reads: "+count);
+        txtRead_Count.setEditable(false);
+        txtRead_Count.setPreferredSize(new Dimension(200, 40));
         this.add(txtRead_Count);
 
         data = new int[SCREEN_WIDTH/GRID_SIZE];
@@ -140,6 +142,8 @@ public class SortArray extends JPanel {
 
     private void incrementCount() {
         count++;
-        new Thread(() -> txtRead_Count.setText("Number of Reads: "+count)).start();
+//        new Thread(() -> txtRead_Count.setText("Number of Reads: "+count)).start();
+        txtRead_Count.setText("Number of Reads: "+count);
+
     }
 }
