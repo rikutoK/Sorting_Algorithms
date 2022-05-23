@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class SortArray extends JPanel {
     public final static int SCREEN_WIDTH = 1000;
@@ -16,9 +17,15 @@ public class SortArray extends JPanel {
 
     private final static int TIME = 1; //delay time milli sec
 
+    private JTextField txtRead_Count;
+    private int count = 0;
+
     public SortArray() {
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_LENGTH));
         this.setBackground(Color.BLACK);
+
+        txtRead_Count = new JTextField("Number of Reads: "+count);
+        this.add(txtRead_Count);
 
         data = new int[SCREEN_WIDTH/GRID_SIZE];
         dataColor = new Color[data.length];
@@ -85,6 +92,8 @@ public class SortArray extends JPanel {
 
         colorBrighter();
 
+        incrementCount();
+
         return data[index];
     }
 
@@ -127,5 +136,10 @@ public class SortArray extends JPanel {
         }
 
         repaint();
+    }
+
+    private void incrementCount() {
+        count++;
+        new Thread(() -> txtRead_Count.setText("Number of Reads: "+count)).start();
     }
 }
