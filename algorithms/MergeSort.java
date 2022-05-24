@@ -10,7 +10,7 @@ public class MergeSort extends Sort {
         this.data = data;
     }
 
-    public void merge(SortArray data, int mid, int left, int right) {
+    public void merge(int mid, int left, int right) {
         int in = 0;
         int jn = 0;
         int k = 1;
@@ -24,9 +24,11 @@ public class MergeSort extends Sort {
         for(int i = 0; i < sizeL; i++) {
             leftArr[i] = data.get(left + i);
         }
+
         for(int i = 0; i < sizeR; i++) {
             rightArr[i] = data.get(mid + i + 1);
         }
+
         while(in < sizeL && jn < sizeR) {
             if(leftArr[in] <= rightArr[jn]) {
                 data.swap(k, left+in);
@@ -38,11 +40,13 @@ public class MergeSort extends Sort {
             }
             k++;
         }
+
         while (in < sizeL) {
             data.swap(k, left+in);;
             in++;
             k++;
         }
+
         while (jn < sizeR) {
             data.swap(k, mid+jn+1);;
             jn++;
@@ -51,15 +55,19 @@ public class MergeSort extends Sort {
 
     }
     
-    public void arrange(SortArray data, int left, int right) {
-        if (left < right) {
-            int mid = left + (right - 1)/2;
-  
-            arrange(data, left, mid);
-            arrange(data, mid + 1, right);
-  
-            merge(data, mid, left, right);
+    public void arrange(int left, int right) {
+        System.out.println(left+", "+right);
+
+        if(left == right) {
+            return;
         }
+
+        int mid = (left + right - 1)/2;
+
+        arrange(left, mid);
+        arrange(mid + 1, right);
+
+        merge(mid, left, right);
     }
 
     @Override
@@ -67,10 +75,12 @@ public class MergeSort extends Sort {
         if(data.isSorted()) {
             return;
         }
-        arrange(data, 0, data.length()-1);
-        if(!data.isSorted()) {
-            sort();
-        }
+
+        arrange(0, data.length()-1);
+
+        // if(!data.isSorted()) {
+        //     sort();
+        // }
     }
 
 }
