@@ -11,7 +11,7 @@ public class SortArray extends JPanel {
     public final static int SCREEN_WIDTH = 1000;
     public final static int SCREEN_LENGTH = 700;
 
-    public final static int GRID_SIZE = 1; //width of each rectangle
+    private static int grid_size = 5; //width of each rectangle
 
     private static int[] data;
     private static Color[] dataColor;
@@ -42,7 +42,11 @@ public class SortArray extends JPanel {
         txtSwap_Count.setPreferredSize(new Dimension(200, 40));
         this.add(txtSwap_Count);
 
-        data = new int[SCREEN_WIDTH/GRID_SIZE];
+        initArray();
+    }
+
+    public void initArray() {
+        data = new int[SCREEN_WIDTH/grid_size];
         dataColor = new Color[data.length];
 
         //set data and set the default color to white
@@ -59,7 +63,7 @@ public class SortArray extends JPanel {
         //draws the bar graph with height as the value
         for(int i = 0; i < data.length; i++) {
             g.setColor(dataColor[i]);
-            g.fillRect(i * GRID_SIZE, SCREEN_LENGTH - data[i], GRID_SIZE, data[i]);
+            g.fillRect(i * grid_size, SCREEN_LENGTH - data[i], grid_size, data[i]);
         }
 
     }
@@ -179,5 +183,11 @@ public class SortArray extends JPanel {
 
         swap_count = 0;
         txtSwap_Count.setText("Number of Swaps: "+swap_count);
+    }
+
+    public void setGridSize(int grid_size) {
+        this.grid_size = grid_size;
+        initArray();
+        repaint();
     }
 }
