@@ -11,7 +11,7 @@ public class SortArray extends JPanel {
     public final static int SCREEN_WIDTH = 1000;
     public final static int SCREEN_LENGTH = 700;
 
-    private static int grid_size = 5; //width of each rectangle
+    private static int grid_size = 20; //width of each rectangle
 
     private static int[] data;
     private static Color[] dataColor;
