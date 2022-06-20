@@ -6,10 +6,8 @@ import java.util.Random;
 
 public class QuickSort extends Sort {
 
-    private SortArray data;
-
     public QuickSort(SortArray data) {
-        this.data = data;
+        super(data);
     }
 
     @Override

@@ -3,11 +3,9 @@ package algorithms;
 import main.SortArray;
 
 public class MergeSort extends Sort {
-
-    private SortArray data;
     
     public MergeSort(SortArray data) {
-        this.data = data;
+        super(data);
     }
 
 

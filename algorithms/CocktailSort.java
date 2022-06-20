@@ -4,10 +4,8 @@ import main.SortArray;
 
 public class CocktailSort extends Sort {
 
-    private SortArray data;
-
     public CocktailSort(SortArray data) {
-        this.data = data;
+        super(data);
     }
 
     @Override
