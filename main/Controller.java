@@ -29,6 +29,8 @@ public class Controller extends JFrame {
         "Quick Sort"
     };
 
+    private JSlider slider;
+
     private Thread thread = new Thread();
     
     public Controller(SortArray data) {
@@ -55,6 +57,33 @@ public class Controller extends JFrame {
         cb.setEditable(false);
         this.add(cb);
 
+        slider = new JSlider(1,5,3);
+        slider.setSnapToTicks(true);
+        slider.setMinorTickSpacing(1);
+        slider.setPaintTicks(true);
+        slider.addChangeListener(e -> {
+            int grid_size = 0;
+            switch(slider.getValue()) {
+                case 1:
+                    grid_size = 1;
+                    break;
+                case 2:
+                    grid_size = 10;
+                    break;
+                case 3:
+                    grid_size = 20;
+                    break;
+                case 4:
+                    grid_size = 50;
+                    break;
+                case 5:
+                    grid_size = 100;
+                    break;
+            }
+            data.setGridSize(grid_size);
+        });
+        this.add(slider);
+
         sort = new JButton("Sort");
         sort.addActionListener(e -> sort());
         this.add(sort);
@@ -70,8 +99,10 @@ public class Controller extends JFrame {
         }
 
         thread = new Thread(() -> {
+            slider.setEnabled(false);
             data.resetCount();
             data.shuffle();
+            slider.setEnabled(true);
         });
         thread.start();
     }
@@ -81,7 +112,11 @@ public class Controller extends JFrame {
             return;
         }
         
-        thread = new Thread(() -> runAlgorithms());
+        thread = new Thread(() -> {
+            slider.setEnabled(false);
+            runAlgorithms();
+            slider.setEnabled(true);
+        });
         thread.start();
     }
 
