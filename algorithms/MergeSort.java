@@ -10,151 +10,76 @@ public class MergeSort extends Sort {
         this.data = data;
     }
 
-    // public void merge(int mid, int left, int right) {
-    //     int in = 0;
-    //     int jn = 0;
-    //     int k = 1;
 
-    //     int sizeL = mid - left + 1;
-    //     int sizeR = right - mid;
-
-    //     int[] leftArr = new int[sizeL];
-    //     int[] rightArr = new int[sizeR];
-
-    //     for(int i = 0; i < sizeL; i++) {
-    //         leftArr[i] = data.get(left + i);
-    //     }
-
-    //     for(int i = 0; i < sizeR; i++) {
-    //         rightArr[i] = data.get(mid + i + 1);
-    //     }
-
-    //     while(in < sizeL && jn < sizeR) {
-    //         if(leftArr[in] <= rightArr[jn]) {
-    //             data.set(leftArr[in], k);
-    //             in++;
-    //         }
-    //         else {
-    //             data.set(rightArr[jn], k);
-    //             jn++;
-    //         }
-    //         k++;
-    //     }
-
-    //     while (in < sizeL) {
-    //         data.set(leftArr[in], k);;
-    //         in++;
-    //         k++;
-    //     }
-
-    //     while (jn < sizeR) {
-    //         data.set(rightArr[jn], k);;
-    //         jn++;
-    //         k++;
-    //     }
-
-    // }
-    
-    // public void arrange(int left, int right) {
-    //     System.out.println(left+", "+right);
-
-    //     if(left < right) {
-
-    //         int mid = (left + right - 1)/2;
-
-    //         arrange(left, mid);
-    //         arrange(mid + 1, right);
-
-    //         merge(mid, left, right);
-
-    //     }
-    // }
-
-    void merge(SortArray arr, int l, int m, int r)
+    void merge(int l, int m, int r)
     {
-        // Find sizes of two subarrays to be merged
-        int n1 = m - l + 1;
-        int n2 = r - m;
+        int leftSize = m - l + 1;
+        int rightSize = r - m;
  
-        /* Create temp arrays */
-        int L[] = new int [n1];
-        int R[] = new int [n2];
+        int leftArr[] = new int [leftSize];
+        int rightArr[] = new int [rightSize];
  
-        /*Copy data to temp arrays*/
-        for (int i=0; i<n1; ++i)
-            L[i] = arr.get(l + i);
-        for (int j=0; j<n2; ++j)
-            R[j] = arr.get(m + 1 + j);
+        for (int i=0; i<leftSize; ++i)
+            leftArr[i] = data.get(l + i);
+        for (int j=0; j<rightSize; ++j)
+            rightArr[j] = data.get(m + 1 + j);
  
+         int i = 0, j = 0;
  
-        /* Merge the temp arrays */
- 
-        // Initial indexes of first and second subarrays
-        int i = 0, j = 0;
- 
-        // Initial index of merged subarray array
         int k = l;
-        while (i < n1 && j < n2)
+        while (i < leftSize && j < rightSize)
         {
-            if (L[i] <= R[j])
+            if (leftArr[i] <= rightArr[j])
             {
-                arr.set(k, L[i]);
+                data.set(k, leftArr[i]);
                 i++;
             }
             else
             {
-                arr.set(k, R[j]);
+                data.set(k, rightArr[j]);
                 j++;
             }
             k++;
         }
  
-        /* Copy remaining elements of L[] if any */
-        while (i < n1)
+        while (i < leftSize)
         {
-            arr.set(k, L[i]);
+            data.set(k, leftArr[i]);
             i++;
             k++;
         }
  
-        /* Copy remaining elements of R[] if any */
-        while (j < n2)
+        while (j < rightSize)
         {
-            arr.set(k, R[j]);
+            data.set(k, rightArr[j]);
             j++;
             k++;
         }
     }
  
-    // Main function that sorts arr[l..r] using
-    // merge()
-    void arrange(SortArray arr, int l, int r)
+    void arrange(int l, int r)
     {
         if (l < r)
         {
-            // Find the middle point
             int m = (l+r)/2;
  
-            // Sort first and second halves
-            arrange(arr, l, m);
-            arrange(arr , m+1, r);
+            arrange(l, m);
+            arrange(m+1, r);
  
-            // Merge the sorted halves
-            merge(arr, l, m, r);
+            merge(l, m, r);
         }
     }
  
-
     @Override
     public void sort() {
         if(data.isSorted()) {
             return;
         }
 
-        arrange(data, 0, data.length()-1);
+        arrange(0, data.length()-1);
 
         if(!data.isSorted()) {
-            arrange(data, 0, data.length()-1);
+            arrange(0, data.length()-1);
         }
     }
 
