@@ -3,10 +3,8 @@ import main.SortArray;
 
 public class BubbleSort extends Sort {
 
-    private SortArray data;
-
     public BubbleSort(SortArray data) {
-        this.data = data;
+        super(data);
     }
 
     @Override

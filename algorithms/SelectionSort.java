@@ -4,10 +4,8 @@ import main.SortArray;
 
 public class SelectionSort extends Sort {
 
-    private SortArray data;
-
     public SelectionSort(SortArray data) {
-        this.data = data;
+        super(data);
     }
 
     @Override

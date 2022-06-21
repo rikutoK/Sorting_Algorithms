@@ -4,10 +4,8 @@ import main.SortArray;
 
 public class InsertionSort extends Sort {
 
-    private SortArray data;
-
     public InsertionSort(SortArray data) {
-        this.data = data;
+        super(data);
     }
 
     @Override

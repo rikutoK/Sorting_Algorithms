@@ -3,73 +3,71 @@ package algorithms;
 import main.SortArray;
 
 public class MergeSort extends Sort {
-
-    private SortArray data;
     
     public MergeSort(SortArray data) {
-        this.data = data;
+        super(data);
     }
 
-    public void merge(int mid, int left, int right) {
-        int in = 0;
-        int jn = 0;
-        int k = 1;
 
-        int sizeL = mid - left + 1;
-        int sizeR = right - mid;
-
-        int[] leftArr = new int[sizeL];
-        int[] rightArr = new int[sizeR];
-
-        for(int i = 0; i < sizeL; i++) {
-            leftArr[i] = data.get(left + i);
-        }
-
-        for(int i = 0; i < sizeR; i++) {
-            rightArr[i] = data.get(mid + i + 1);
-        }
-
-        while(in < sizeL && jn < sizeR) {
-            if(leftArr[in] <= rightArr[jn]) {
-                data.swap(k, left+in);
-                in++;
+    void merge(int l, int m, int r)
+    {
+        int leftSize = m - l + 1;
+        int rightSize = r - m;
+ 
+        int leftArr[] = new int [leftSize];
+        int rightArr[] = new int [rightSize];
+ 
+        for (int i=0; i<leftSize; ++i)
+            leftArr[i] = data.get(l + i);
+        for (int j=0; j<rightSize; ++j)
+            rightArr[j] = data.get(m + 1 + j);
+ 
+         int i = 0, j = 0;
+ 
+        int k = l;
+        while (i < leftSize && j < rightSize)
+        {
+            if (leftArr[i] <= rightArr[j])
+            {
+                data.set(k, leftArr[i]);
+                i++;
             }
-            else {
-                data.swap(k, mid+jn+1);
-                jn++;
+            else
+            {
+                data.set(k, rightArr[j]);
+                j++;
             }
             k++;
         }
-
-        while (in < sizeL) {
-            data.swap(k, left+in);;
-            in++;
+ 
+        while (i < leftSize)
+        {
+            data.set(k, leftArr[i]);
+            i++;
             k++;
         }
-
-        while (jn < sizeR) {
-            data.swap(k, mid+jn+1);;
-            jn++;
+ 
+        while (j < rightSize)
+        {
+            data.set(k, rightArr[j]);
+            j++;
             k++;
         }
-
     }
-    
-    public void arrange(int left, int right) {
-        System.out.println(left+", "+right);
-
-        if(left == right) {
-            return;
+ 
+    void arrange(int l, int r)
+    {
+        if (l < r)
+        {
+            int m = (l+r)/2;
+ 
+            arrange(l, m);
+            arrange(m+1, r);
+ 
+            merge(l, m, r);
         }
-
-        int mid = (left + right - 1)/2;
-
-        arrange(left, mid);
-        arrange(mid + 1, right);
-
-        merge(mid, left, right);
     }
-
+ 
     @Override
     public void sort() {
         if(data.isSorted()) {
@@ -78,9 +76,9 @@ public class MergeSort extends Sort {
 
         arrange(0, data.length()-1);
 
-        // if(!data.isSorted()) {
-        //     sort();
-        // }
+        if(!data.isSorted()) {
+            arrange(0, data.length()-1);
+        }
     }
 
 }
