@@ -82,6 +82,14 @@ public class SortArray extends JPanel {
     }
 
     public void set(int index, int value) {
+        dataColor[index] = Color.GREEN;
+        repaint();
+        sleepFor(TIME);
+
+        colorBrighter();
+
+        incrementCount();
+
         data[index] = value;
     }
 
